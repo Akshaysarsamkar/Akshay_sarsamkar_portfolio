@@ -1,0 +1,153 @@
+<section
+  class="what-i-do"
+  [class.what-i-do--visible]="isVisible()"
+  aria-labelledby="what-i-do-heading"
+>
+
+  <!-- ── Decorative Background Layer ──────────────────────── -->
+  <div class="what-i-do__decorations" aria-hidden="true">
+    <div class="what-i-do__bg-grid"></div>
+    <div class="what-i-do__bg-blob what-i-do__bg-blob--1"></div>
+    <div class="what-i-do__bg-blob what-i-do__bg-blob--2"></div>
+    <div class="what-i-do__bg-blob what-i-do__bg-blob--3"></div>
+
+    <!-- Decorative handwritten taglines -->
+    <div class="what-i-do__tagline what-i-do__tagline--tl">
+      <span class="what-i-do__tagline-word">Code</span>
+      <span class="what-i-do__tagline-word">Create</span>
+      <span class="what-i-do__tagline-word">Innovate</span>
+      <span class="what-i-do__tagline-line"></span>
+    </div>
+    <div class="what-i-do__tagline what-i-do__tagline--tr">
+      <span class="what-i-do__tagline-word">Ideas</span>
+      <span class="what-i-do__tagline-word">to</span>
+      <span class="what-i-do__tagline-word">Reality</span>
+      <span class="what-i-do__tagline-line"></span>
+    </div>
+    <div class="what-i-do__tagline what-i-do__tagline--br">
+      <span class="what-i-do__tagline-word">Build</span>
+      <span class="what-i-do__tagline-word">Learn</span>
+      <span class="what-i-do__tagline-word">Grow</span>
+      <span class="what-i-do__tagline-word what-i-do__tagline-word--accent">Repeat</span>
+      <span class="what-i-do__tagline-line"></span>
+    </div>
+  </div>
+
+  <!-- ── Section Container ─────────────────────────────────── -->
+  <div class="what-i-do__container">
+
+    <!-- ── Header ──────────────────────────────────────────── -->
+    <header class="what-i-do__header">
+      <span class="what-i-do__eyebrow" aria-label="Section label">
+        <span class="what-i-do__eyebrow-dot" aria-hidden="true"></span>
+        WHAT I DO
+        <span class="what-i-do__eyebrow-dot" aria-hidden="true"></span>
+      </span>
+
+      <h2 class="what-i-do__title" id="what-i-do-heading">
+        From Code to
+        <span class="what-i-do__title-accent">Real Experiences</span>
+      </h2>
+
+      <p class="what-i-do__description">
+        I write clean, maintainable code to build modern web applications.
+      </p>
+    </header>
+
+    <!-- ── Main 2-Column Content ─────────────────────────────── -->
+    <div class="what-i-do__content">
+
+      <!-- ── LEFT: Code Editor ───────────────────────────────── -->
+      <div class="what-i-do__editor-wrap">
+        <div class="what-i-do__editor" role="img" aria-label="Code editor showing developer TypeScript object">
+          <!-- Editor chrome header -->
+          <div class="what-i-do__editor-header">
+            <div class="what-i-do__editor-dots" aria-hidden="true">
+              <span class="what-i-do__editor-dot what-i-do__editor-dot--red"></span>
+              <span class="what-i-do__editor-dot what-i-do__editor-dot--yellow"></span>
+              <span class="what-i-do__editor-dot what-i-do__editor-dot--green"></span>
+            </div>
+            <div class="what-i-do__editor-tab">
+              <svg class="what-i-do__editor-tab-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="1" y="1" width="14" height="14" rx="2" fill="#3178C6"/>
+                <path d="M4 8h5.5M7 5.5V10.5M10 8.5c.3-.3.7-.5 1.1-.5.9 0 1.6.7 1.6 1.5S11.9 11 11.1 11c-.4 0-.8-.2-1.1-.5" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+              <span>developer.ts</span>
+              <span class="what-i-do__editor-tab-dot" aria-hidden="true"></span>
+            </div>
+          </div>
+
+          <!-- Editor code body -->
+          <div class="what-i-do__editor-body">
+            <div class="what-i-do__editor-lines" aria-hidden="true">
+              @for (line of codeLines; track $index) {
+                <div class="what-i-do__line-num">{{ $index + 1 }}</div>
+              }
+            </div>
+            <div class="what-i-do__editor-code">
+              @for (line of codeLines; track $index) {
+                <div
+                  class="what-i-do__code-line"
+                  [style.--line-index]="$index"
+                >
+                  @if (line.tokens.length > 0) {
+                    @for (token of line.tokens; track $index) {
+                      <span [class]="'what-i-do__token what-i-do__token--' + token.cls">{{ token.text }}</span>
+                    }
+                  } @else {
+                    <span>&nbsp;</span>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Status bar -->
+          <div class="what-i-do__editor-statusbar" aria-hidden="true">
+            <span class="what-i-do__status-item what-i-do__status-item--branch">
+              <svg viewBox="0 0 16 16" fill="currentColor" width="10" height="10" aria-hidden="true">
+                <path d="M11.75 2.5a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0zm.75 1.5a2.25 2.25 0 1 1 0-4.5 2.25 2.25 0 0 1 0 4.5zM2.75 2.5a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0zm.75 1.5a2.25 2.25 0 1 1 0-4.5 2.25 2.25 0 0 1 0 4.5zM2.75 13.5a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0zm.75 1.5a2.25 2.25 0 1 1 0-4.5 2.25 2.25 0 0 1 0 4.5z"/>
+                <path d="M3.5 4v5.5a3 3 0 0 0 3 3H8"/>
+                <path d="M12.5 4v2.5"/>
+              </svg>
+              main
+            </span>
+            <span class="what-i-do__status-item">TypeScript</span>
+            <span class="what-i-do__status-item">UTF-8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── RIGHT: Service Cards Grid ──────────────────────── -->
+      <div class="what-i-do__services" aria-label="Services offered">
+        @for (service of services(); track service.id) {
+          <div
+            class="what-i-do__service-item"
+            [style.--card-index]="$index"
+          >
+            <app-service-card [service]="service" />
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- ── Statistics Row ──────────────────────────────────── -->
+    <div class="what-i-do__stats" aria-label="Key statistics">
+      @for (stat of stats; track stat.label) {
+        <div class="what-i-do__stat" [style.--stat-index]="$index">
+          <div class="what-i-do__stat-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <path [attr.d]="stat.iconPath"/>
+            </svg>
+          </div>
+          <div class="what-i-do__stat-content">
+            <span class="what-i-do__stat-value">{{ stat.value }}</span>
+            <span class="what-i-do__stat-label">{{ stat.label }}</span>
+          </div>
+        </div>
+      }
+    </div>
+
+  </div><!-- /.what-i-do__container -->
+</section>

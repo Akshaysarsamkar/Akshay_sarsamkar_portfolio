@@ -1,0 +1,329 @@
+@use "abstracts" as colors;
+
+// ── Variables ─────────────────────────────────────────────────
+$card-transition: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+$border-radius: 14px;
+
+:host {
+  display: block;
+  perspective: 900px;
+  perspective-origin: 50% 50%;
+}
+
+// ============================================================
+//  SERVICE CARD — LIGHT THEME (default)
+// ============================================================
+
+.service-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  background: colors.$color-light-surface;
+  border: 1px solid colors.$color-light-border;
+  border-radius: $border-radius;
+  box-shadow:
+    0 1px 3px rgba(15, 23, 42, 0.04),
+    0 4px 12px rgba(15, 23, 42, 0.03);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition:
+    transform $card-transition,
+    border-color $card-transition,
+    box-shadow $card-transition,
+    background $card-transition;
+
+  // Corner shimmer overlay — lights up from top-left on hover
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0.08) 35%,
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity $card-transition;
+    border-radius: $border-radius;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  // Corner depth edge — simulates raised bottom-right corner
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: $border-radius;
+    box-shadow: inset -2px -2px 8px rgba(15, 23, 42, 0.06);
+    opacity: 0;
+    transition: opacity $card-transition;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &:hover {
+    // Tilt back into the top-left corner — depth effect
+    transform:
+      rotateX(4deg)
+      rotateY(-5deg)
+      scale(1.015);
+    border-color: rgba(37, 99, 235, 0.28);
+    box-shadow:
+      // Left edge deepens (card tipping right)
+      -6px 6px 20px rgba(15, 23, 42, 0.09),
+      // Soft ambient depth
+      0 16px 40px rgba(37, 99, 235, 0.07),
+      // Subtle bottom spread
+      0 4px 8px rgba(15, 23, 42, 0.06);
+
+    &::before { opacity: 1; } // Top-left corner sheen
+    &::after  { opacity: 1; } // Bottom-right inner shadow
+
+    .service-card__icon {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px color-mix(in srgb, var(--icon-color, #2563eb) 30%, transparent);
+    }
+
+    .service-card__arrow {
+      transform: translateX(4px);
+    }
+
+    .service-card__technology {
+      opacity: 1;
+      background: color-mix(in srgb, var(--tech-color, #2563eb) 10%, #f1f5f9);
+      border-color: color-mix(in srgb, var(--tech-color, #2563eb) 25%, transparent);
+    }
+  }
+
+  // ── Icon ──────────────────────────────────────────────────
+
+  &__icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--icon-color, #2563eb) 10%, #f1f5f9);
+    border: 1px solid color-mix(in srgb, var(--icon-color, #2563eb) 18%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--icon-color, #2563eb);
+    transition:
+      transform $card-transition,
+      box-shadow $card-transition,
+      background $card-transition;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  // ── Content ───────────────────────────────────────────────
+
+  &__content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  &__number {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--icon-color, colors.$color-primary-blue);
+    letter-spacing: 0.5px;
+    opacity: 0.75;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: colors.$color-text-dark;
+    margin: 0;
+    line-height: 1.3;
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__description {
+    font-size: 11.5px;
+    color: colors.$color-text-dark-muted;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  // ── Footer ────────────────────────────────────────────────
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  &__technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__technology {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--tech-color, #2563eb) 8%, #f8fafc);
+    border: 1px solid color-mix(in srgb, var(--tech-color, #2563eb) 18%, transparent);
+    color: color-mix(in srgb, var(--tech-color, #2563eb) 80%, #0f172a);
+    white-space: nowrap;
+    opacity: 0.9;
+    transition:
+      background $card-transition,
+      border-color $card-transition,
+      opacity $card-transition;
+  }
+
+  // ── Arrow Button ──────────────────────────────────────────
+
+  &__action {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: color-mix(in srgb, var(--icon-color, #2563eb) 8%, #f1f5f9);
+    border-radius: 8px;
+    color: var(--icon-color, colors.$color-primary-blue);
+    cursor: pointer;
+    transition:
+      background $card-transition,
+      color $card-transition;
+
+    &:hover {
+      background: color-mix(in srgb, var(--icon-color, #2563eb) 18%, #e2e8f0);
+    }
+  }
+
+  &__arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+// ============================================================
+//  DARK THEME
+// ============================================================
+
+:host-context(.dark-theme),
+:host-context([data-theme="dark"]) {
+  .service-card {
+    background: colors.$color-surface-primary;
+    border-color: colors.$color-border-primary;
+    box-shadow:
+      0 1px 4px rgba(0, 0, 0, 0.35),
+      0 4px 16px rgba(0, 0, 0, 0.25);
+
+    &:hover {
+      border-color: colors.$color-border-hover;
+      box-shadow:
+        // Left-edge depth shadow matching tilt direction
+        -6px 6px 24px rgba(0, 0, 0, 0.55),
+        // Cyan ambient glow
+        0 16px 40px rgba(56, 189, 248, 0.08),
+        0 0 0 1px rgba(56, 189, 248, 0.1);
+
+      // Tint the corner shimmer blue for dark mode
+      &::before {
+        background: linear-gradient(
+          145deg,
+          rgba(56, 189, 248, 0.1) 0%,
+          rgba(56, 189, 248, 0.03) 35%,
+          transparent 60%
+        );
+      }
+
+      .service-card__icon {
+        box-shadow: 0 0 24px color-mix(in srgb, var(--icon-color, #38bdf8) 40%, transparent);
+        background: color-mix(in srgb, var(--icon-color, #38bdf8) 14%, #0b1729);
+      }
+
+      .service-card__technology {
+        background: color-mix(in srgb, var(--tech-color, #38bdf8) 12%, #0f1d32);
+        border-color: color-mix(in srgb, var(--tech-color, #38bdf8) 30%, transparent);
+      }
+    }
+
+    &__icon {
+      background: color-mix(in srgb, var(--icon-color, #38bdf8) 10%, #0b1729);
+      border-color: color-mix(in srgb, var(--icon-color, #38bdf8) 20%, transparent);
+    }
+
+    &__title {
+      color: colors.$color-text-primary;
+    }
+
+    &__description {
+      color: colors.$color-text-muted;
+    }
+
+    &__number {
+      color: var(--icon-color, colors.$color-primary);
+    }
+
+    &__technology {
+      background: color-mix(in srgb, var(--tech-color, #38bdf8) 8%, #0b1729);
+      border-color: color-mix(in srgb, var(--tech-color, #38bdf8) 18%, transparent);
+      color: color-mix(in srgb, var(--tech-color, #38bdf8) 90%, #f8fafc);
+    }
+
+    &__action {
+      background: color-mix(in srgb, var(--icon-color, #38bdf8) 10%, #0f1d32);
+      color: var(--icon-color, colors.$color-primary);
+
+      &:hover {
+        background: color-mix(in srgb, var(--icon-color, #38bdf8) 20%, #183252);
+      }
+    }
+  }
+}
+
+// ============================================================
+//  REDUCED MOTION
+// ============================================================
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .service-card__icon,
+  .service-card__arrow,
+  .service-card__technology {
+    transition: none !important;
+  }
+
+  .service-card:hover {
+    transform: none !important;
+  }
+}

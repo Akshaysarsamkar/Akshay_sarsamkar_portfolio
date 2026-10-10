@@ -1,0 +1,40 @@
+<article
+  class="service-card"
+  [attr.aria-label]="service().title"
+  [style.--icon-color]="service().iconColor"
+>
+  <!-- Icon -->
+  <div class="service-card__icon" aria-hidden="true" [innerHTML]="service().iconSvg | safeHtml"></div>
+
+  <!-- Content -->
+  <div class="service-card__content">
+    <div class="service-card__meta">
+      <span class="service-card__number">{{ service().number }}</span>
+      <h3 class="service-card__title">{{ service().title }}</h3>
+    </div>
+    <p class="service-card__description">{{ service().description }}</p>
+
+    <div class="service-card__footer">
+      <!-- Technology badges -->
+      <div class="service-card__technologies" aria-label="Technologies used">
+        @for (tech of service().technologies; track tech.name) {
+          <span
+            class="service-card__technology"
+            [style.--tech-color]="tech.color"
+          >{{ tech.name }}</span>
+        }
+      </div>
+
+      <!-- Arrow action -->
+      <button
+        class="service-card__action"
+        [attr.aria-label]="'Learn more about ' + service().title"
+        type="button"
+      >
+        <svg class="service-card__arrow" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</article>

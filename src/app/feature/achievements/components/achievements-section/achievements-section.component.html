@@ -1,0 +1,155 @@
+<section
+  class="achievements"
+  [class.achievements--visible]="isVisible()"
+  aria-labelledby="achievements-heading"
+>
+
+  <!-- ── Decorative Background ─────────────────────────────── -->
+  <div class="achievements__decorations" aria-hidden="true">
+    <div class="achievements__bg-grid"></div>
+    <div class="achievements__bg-blob achievements__bg-blob--1"></div>
+    <div class="achievements__bg-blob achievements__bg-blob--2"></div>
+    <div class="achievements__bg-blob achievements__bg-blob--3"></div>
+
+    <!-- Handwritten decoration -->
+    <div class="achievements__tagline achievements__tagline--left">
+      <span class="achievements__tagline-word">Small</span>
+      <span class="achievements__tagline-word">Steps</span>
+      <span class="achievements__tagline-accent">Big Results</span>
+      <span class="achievements__tagline-line"></span>
+    </div>
+    <div class="achievements__tagline achievements__tagline--right">
+      <span class="achievements__tagline-word">Grow</span>
+      <span class="achievements__tagline-word">Every</span>
+      <span class="achievements__tagline-word">Day</span>
+      <span class="achievements__tagline-line achievements__tagline-line--right"></span>
+    </div>
+  </div>
+
+  <!-- ── Main Container ─────────────────────────────────────── -->
+  <div class="achievements__container">
+
+    <!-- ── LEFT: Content Side ─────────────────────────────── -->
+    <div class="achievements__content">
+
+      <!-- Section header -->
+      <header class="achievements__header">
+        <span class="achievements__eyebrow" aria-label="Section label">
+          <span class="achievements__eyebrow-dot" aria-hidden="true"></span>
+          ACHIEVEMENTS
+          <span class="achievements__eyebrow-dot" aria-hidden="true"></span>
+        </span>
+
+        <h2 class="achievements__title" id="achievements-heading">
+          Consistent Growth<br>
+          <span class="achievements__title-accent">Real Results</span>
+        </h2>
+
+        <p class="achievements__description">
+          Small steps, consistent effort, real progress.
+        </p>
+      </header>
+
+      <!-- Divider -->
+      <div class="achievements__divider" aria-hidden="true">
+        <span class="achievements__divider-line"></span>
+        <span class="achievements__divider-dot"></span>
+        <span class="achievements__divider-line"></span>
+      </div>
+
+      <!-- Stats grid -->
+      <div class="achievements__stats" aria-label="Key achievements">
+        @for (stat of stats(); track stat.label) {
+          <div
+            class="achievements__stat"
+            [style.--stat-index]="$index"
+            [attr.aria-label]="stat.value + ' ' + stat.label"
+          >
+            <!-- Icon -->
+            <div class="achievements__stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+                xmlns="http://www.w3.org/2000/svg">
+                <path [attr.d]="stat.iconPath"/>
+              </svg>
+            </div>
+
+            <!-- Value + labels -->
+            <div class="achievements__stat-body">
+              <span class="achievements__stat-value">{{ stat.value }}</span>
+              <span class="achievements__stat-label">{{ stat.label }}</span>
+              @if (stat.sublabel) {
+                <span class="achievements__stat-sublabel">{{ stat.sublabel }}</span>
+              }
+            </div>
+
+            <!-- Decorative corner accent -->
+            <span class="achievements__stat-corner" aria-hidden="true"></span>
+          </div>
+        }
+      </div>
+
+    </div><!-- /.achievements__content -->
+
+    <!-- ── RIGHT: Illustration Side ──────────────────────── -->
+    <div class="achievements__illustration-wrap">
+
+      <!-- Floating card behind image -->
+      <div class="achievements__illustration-card">
+
+        <!-- Image frame -->
+        <div class="achievements__image-frame">
+          <img
+            class="achievements__image achievements__image--light"
+            src="assets/achivements/step-light.png"
+            alt="Learning journey illustration showing progression from learning to growth"
+            loading="lazy"
+            draggable="false"
+          />
+          <img
+            class="achievements__image achievements__image--dark"
+            src="assets/achivements/step-dark.png"
+            alt="Learning journey illustration showing progression from learning to growth"
+            loading="lazy"
+            draggable="false"
+          />
+        </div>
+
+        <!-- Journey step labels overlay -->
+        <div class="achievements__journey" aria-label="Learning journey steps">
+          @for (step of journeySteps(); track step.label; let last = $last) {
+            <div class="achievements__journey-step" [style.--step-index]="$index">
+              <span class="achievements__journey-emoji" aria-hidden="true">{{ step.icon }}</span>
+              <span class="achievements__journey-label">{{ step.label }}</span>
+            </div>
+            @if (!last) {
+              <span class="achievements__journey-arrow" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 10h12M12 6l4 4-4 4" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            }
+          }
+        </div>
+
+        <!-- Floating badge — top right -->
+        <div class="achievements__badge achievements__badge--top" aria-hidden="true">
+          <span class="achievements__badge-dot"></span>
+          <span class="achievements__badge-text">Always Learning</span>
+        </div>
+
+        <!-- Floating badge — bottom left -->
+        <div class="achievements__badge achievements__badge--bottom" aria-hidden="true">
+          <svg class="achievements__badge-icon" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <span class="achievements__badge-text">Frontend Developer</span>
+        </div>
+
+      </div><!-- /.achievements__illustration-card -->
+    </div><!-- /.achievements__illustration-wrap -->
+
+  </div><!-- /.achievements__container -->
+</section>

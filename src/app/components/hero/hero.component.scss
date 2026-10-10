@@ -1,0 +1,778 @@
+@use "../../style/abstracts" as colors;
+
+// ============================================================
+//  KEYFRAME ANIMATIONS
+// ============================================================
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes hero-slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes hero-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-float-a {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes hero-float-b {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes hero-float-c {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+// ============================================================
+//  HERO BLOCK
+// ============================================================
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 20px 0 60px;
+
+  &__container {
+    width: min(1200px, calc(100% - 100px));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    animation: hero-fade-up 0.6s ease both;
+    animation-delay: 0ms;
+  }
+
+  // ── Eyebrow ────────────────────────────────────────────────
+  &__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: colors.$color-primary-blue;
+    animation: hero-fade-up 0.55s ease both;
+    animation-delay: 0ms;
+  }
+
+  &__eyebrow-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, colors.$color-primary-blue, colors.$color-accent-purple);
+    flex-shrink: 0;
+  }
+
+  // ── Title / Name ───────────────────────────────────────────
+  &__title {
+    font-size: clamp(42px, 5.5vw, 72px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -2px;
+    color: colors.$color-text-dark;
+    animation: hero-fade-up 0.6s ease both;
+    animation-delay: 100ms;
+  }
+
+  &__title-accent {
+    background: linear-gradient(135deg, colors.$color-primary-blue 20%, colors.$color-accent-purple 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 70px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, colors.$color-primary-blue, colors.$color-accent-purple);
+    }
+  }
+
+  // ── Role Badges ────────────────────────────────────────────
+  &__role {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    animation: hero-fade-up 0.6s ease both;
+    animation-delay: 200ms;
+  }
+
+  &__role-badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: colors.$color-text-dark-subtle;
+    padding: 5px 12px;
+    border: 1px solid colors.$color-light-border;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+  }
+
+  &__role-separator {
+    color: colors.$color-primary-blue;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  // ── Description ────────────────────────────────────────────
+  &__description {
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: colors.$color-text-dark-muted;
+    max-width: 480px;
+    animation: hero-fade-up 0.6s ease both;
+    animation-delay: 300ms;
+  }
+
+  // ── CTA Actions ────────────────────────────────────────────
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    animation: hero-fade-up 0.6s ease both;
+    animation-delay: 400ms;
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 26px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    cursor: pointer;
+
+    &--primary {
+      background: linear-gradient(135deg, colors.$color-primary-blue, colors.$color-accent-purple);
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+      }
+    }
+
+    &--secondary {
+      background: rgba(255, 255, 255, 0.8);
+      color: colors.$color-primary-blue;
+      border: 1.5px solid rgba(37, 99, 235, 0.25);
+      backdrop-filter: blur(8px);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(37, 99, 235, 0.12);
+        border-color: rgba(37, 99, 235, 0.4);
+      }
+    }
+  }
+
+  &__button-icon {
+    font-size: 16px;
+    line-height: 1;
+    transition: transform 0.25s ease;
+  }
+
+  &__button:hover &__button-icon { transform: translate(2px, -1px); }
+  &__button--secondary:hover &__button-icon { transform: translateY(2px); }
+
+  // ── Social Links ────────────────────────────────────────────
+  &__socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: hero-fade-in 0.7s ease both;
+    animation-delay: 500ms;
+  }
+
+  &__social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: colors.$color-text-dark-muted;
+    transition: transform 0.25s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+
+      .hero__social-icon {
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.22);
+        border-color: rgba(37, 99, 235, 0.35);
+        background: rgba(37, 99, 235, 0.06);
+      }
+
+      .hero__social-label { color: colors.$color-primary-blue; }
+
+      &[data-social="github"] .hero__social-icon {
+        box-shadow: 0 8px 20px rgba(36, 41, 47, 0.2);
+        border-color: rgba(36, 41, 47, 0.3);
+        background: rgba(36, 41, 47, 0.06);
+      }
+
+      &[data-social="email"] .hero__social-icon {
+        box-shadow: 0 8px 20px rgba(234, 67, 53, 0.2);
+        border-color: rgba(234, 67, 53, 0.3);
+        background: rgba(234, 67, 53, 0.05);
+      }
+
+      &[data-social="leetcode"] .hero__social-icon {
+        box-shadow: 0 8px 20px rgba(255, 161, 22, 0.25);
+        border-color: rgba(255, 161, 22, 0.35);
+        background: rgba(255, 161, 22, 0.06);
+      }
+    }
+  }
+
+  &__social-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    border: 1.5px solid colors.$color-light-border;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &__social-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: colors.$color-text-dark-faint;
+    text-transform: uppercase;
+    transition: color 0.25s ease;
+    line-height: 1;
+  }
+
+
+  // ============================================================
+  //  RIGHT: VISUAL
+  // ============================================================
+
+  &__visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    animation: hero-scale-in 0.7s ease both;
+    animation-delay: 200ms;
+  }
+
+  &__portrait-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    min-height: 540px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  // (hero background is set on .hero itself via background-image)
+
+  // ── Handwritten tagline: "Build Better Web" ────────────────
+  &__tagline {
+    position: absolute;
+    top: 28px;
+    right: 24px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0;
+    line-height: 1.15;
+    pointer-events: none;
+    animation: hero-fade-in 0.7s ease both;
+    animation-delay: 800ms;
+  }
+
+  &__tagline-text {
+    font-family: 'Dancing Script', 'Pacifico', 'Brush Script MT', cursive;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 700;
+    color: colors.$color-primary-blue;
+    opacity: 0.85;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+
+  &__tagline-underline {
+    display: block;
+    width: 70%;
+    height: 2.5px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, colors.$color-primary-blue, transparent);
+    margin-top: 3px;
+    opacity: 0.5;
+  }
+
+  // ── Portrait image ─────────────────────────────────────────
+  &__portrait-frame {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 420px;
+    margin-bottom: -20px;
+    overflow: visible;
+    cursor: pointer;
+
+    &:hover .hero__portrait {
+      transform: scale(1.04);
+      filter: drop-shadow(0 24px 40px rgba(37, 99, 235, 0.18));
+    }
+  }
+
+  &__portrait {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    object-position: top center;
+    user-select: none;
+    draggable: false;
+    filter: drop-shadow(0 16px 32px rgba(15, 23, 42, 0.12));
+    transform: scale(1);
+    transform-origin: bottom center;
+    transition: transform 0.5s ease, filter 0.5s ease;
+  }
+
+  // ============================================================
+  //  FLOATING CARDS (shared base)
+  // ============================================================
+
+  &__float-card {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 14px;
+    box-shadow:
+      0 4px 20px rgba(15, 23, 42, 0.08),
+      0 1px 4px rgba(15, 23, 42, 0.04);
+    z-index: 4;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+    }
+  }
+
+  &__float-card-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    &--angular {
+      background: rgba(221, 0, 49, 0.08);
+    }
+
+    &--code {
+      background: rgba(37, 99, 235, 0.08);
+      color: colors.$color-primary-blue;
+
+      svg {
+        stroke: colors.$color-primary-blue;
+      }
+    }
+
+    &--react {
+      background: rgba(97, 218, 251, 0.1);
+    }
+
+    &--learning {
+      background: rgba(251, 191, 36, 0.12);
+    }
+
+    &--js {
+      background: rgba(247, 223, 30, 0.1);
+    }
+
+    &--ts {
+      background: rgba(49, 120, 198, 0.1);
+    }
+  }
+
+  &__float-card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__float-card-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: colors.$color-text-dark;
+    line-height: 1.2;
+  }
+
+  &__float-card-sub {
+    font-size: 10.5px;
+    font-weight: 500;
+    color: colors.$color-text-dark-faint;
+    line-height: 1.2;
+  }
+
+  // ========================================================
+  //  CARD POSITIONS: 3 LEFT + 3 RIGHT
+  // ========================================================
+
+  // LEFT TOP
+  &__angular-card {
+    top: 10%;
+    left: -14px;
+    animation:
+      hero-slide-left 0.6s 0.3s ease both,
+      hero-float-a 4s 1.2s ease-in-out infinite;
+  }
+
+  // LEFT MID
+  &__react-card {
+    top: 45%;
+    left: -14px;
+    transform: translateY(-50%);
+    animation:
+      hero-slide-left 0.6s 0.5s ease both,
+      hero-float-b 4.5s 1.4s ease-in-out infinite;
+
+    &:hover {
+      transform: translateY(calc(-50% - 4px));
+    }
+  }
+
+  // LEFT BOTTOM
+  &__code-card {
+    bottom: 18%;
+    left: -14px;
+    animation:
+      hero-slide-left 0.6s 0.7s ease both,
+      hero-float-a 5s 1.6s ease-in-out infinite;
+  }
+
+  // RIGHT TOP
+  &__learning-card {
+    top: 10%;
+    right: -14px;
+    animation:
+      hero-slide-right 0.6s 0.4s ease both,
+      hero-float-c 4.5s 1.3s ease-in-out infinite;
+  }
+
+  // RIGHT MID
+  &__js-card {
+    top: 45%;
+    right: -14px;
+    transform: translateY(-50%);
+    animation:
+      hero-slide-right 0.6s 0.6s ease both,
+      hero-float-b 5s 1.5s ease-in-out infinite;
+
+    &:hover {
+      transform: translateY(calc(-50% - 4px));
+    }
+  }
+
+  // RIGHT BOTTOM
+  &__ts-card {
+    bottom: 18%;
+    right: -14px;
+    animation:
+      hero-slide-right 0.6s 0.8s ease both,
+      hero-float-c 4s 1.7s ease-in-out infinite;
+  }
+
+
+  // ============================================================
+  //  RESPONSIVE
+  // ============================================================
+
+  // ── Tablet ─────────────────────────────────────────────────
+  @media (max-width: 1024px) {
+    &__container {
+      gap: 40px;
+    }
+
+    &__title {
+      font-size: clamp(36px, 5vw, 56px);
+    }
+
+    &__description {
+      font-size: 15px;
+    }
+
+    &__portrait-wrapper {
+      min-height: 460px;
+    }
+
+    &__angular-card {
+      left: -6px;
+    }
+
+    &__code-card {
+      left: -10px;
+    }
+
+    &__learning-card {
+      right: -6px;
+    }
+  }
+
+  // ── Mobile: stack vertically ───────────────────────────────
+  @media (max-width: 768px) {
+    padding: 20px 0 80px;
+
+    &__container {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    &__content {
+      gap: 20px;
+      order: 1;
+    }
+
+    &__title {
+      font-size: clamp(38px, 10vw, 56px);
+      letter-spacing: -1.5px;
+    }
+
+    &__description {
+      max-width: 100%;
+      font-size: 15px;
+    }
+
+    &__socials {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    &__visual {
+      order: 2;
+      width: 100%;
+    }
+
+    &__portrait-wrapper {
+      min-height: 400px;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    &__angular-card {
+      top: 8%;
+      left: 0;
+    }
+
+    &__code-card {
+      top: auto;
+      bottom: 20%;
+      left: 0;
+      transform: none;
+
+      &:hover {
+        transform: translateY(-4px);
+      }
+    }
+
+    &__learning-card {
+      top: 8%;
+      right: 0;
+    }
+
+    &__stats {
+      width: calc(100% - 0px);
+      padding: 14px 16px;
+    }
+
+    &__stat-value {
+      font-size: 20px;
+    }
+
+    &__stat-label {
+      font-size: 9px;
+    }
+  }
+
+  // ── Small mobile ───────────────────────────────────────────
+  @media (max-width: 480px) {
+    &__title {
+      font-size: clamp(34px, 11vw, 48px);
+    }
+
+    &__actions {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__button {
+      width: 100%;
+      justify-content: center;
+    }
+
+    &__tech-list {
+      gap: 8px;
+    }
+
+    &__float-card {
+      padding: 8px 11px;
+      gap: 8px;
+    }
+
+    &__float-card-icon {
+      width: 28px;
+      height: 28px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    &__float-card-title {
+      font-size: 11.5px;
+    }
+
+    &__float-card-sub {
+      font-size: 10px;
+    }
+  }
+}

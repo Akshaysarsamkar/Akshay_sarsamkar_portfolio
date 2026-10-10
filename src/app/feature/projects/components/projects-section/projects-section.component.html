@@ -1,0 +1,153 @@
+<section class="projects-section" id="projects" aria-labelledby="projects-heading">
+
+  <div class="projects-section__container">
+
+    <!-- ── Section header ───────────────────────────────────── -->
+    <header class="projects-section__header">
+      <div class="projects-section__header-main">
+
+        <span class="projects-section__eyebrow" aria-label="Section label">
+          <span class="projects-section__eyebrow-dot" aria-hidden="true"></span>
+          MY WORK
+        </span>
+
+        <h2 class="projects-section__title" id="projects-heading">
+          Turning Ideas into<br>
+          <span class="projects-section__title-accent">Real Products</span>
+        </h2>
+
+        <p class="projects-section__description">
+          Here are some of the projects I've worked on. Each project helped me grow
+          as a developer and solve real-world problems.
+        </p>
+
+      </div>
+
+      <!-- Decorative handwritten tagline -->
+      <div class="projects-section__tagline" aria-hidden="true">
+        <span class="projects-section__tagline-text">Build</span>
+        <span class="projects-section__tagline-text">Learn</span>
+        <span class="projects-section__tagline-text">Improve</span>
+        <span class="projects-section__tagline-text">Repeat</span>
+        <span class="projects-section__tagline-line"></span>
+      </div>
+    </header>
+
+    <!-- ── Carousel wrapper ─────────────────────────────────── -->
+    <div
+      class="projects-section__carousel"
+      [class.projects-section__carousel--transitioning]="isTransitioning()"
+      role="region"
+      aria-label="Projects carousel"
+    >
+
+      <!-- Previous navigation button -->
+      <button
+        class="projects-section__navigation-button projects-section__navigation-button--prev"
+        (click)="goToPrevious()"
+        aria-label="Previous project"
+        id="projects-nav-prev"
+        [disabled]="isTransitioning()"
+      >
+        <svg
+          class="projects-section__nav-icon"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <!-- ── Cards track ──────────────────────────────────── -->
+      <div class="projects-section__track" aria-live="polite">
+
+        <!-- Previous card (left peek) -->
+        <div
+          class="projects-section__project projects-section__project--prev"
+          aria-hidden="true"
+          (click)="goToPrevious()"
+        >
+          <app-project-card [project]="previousProject()" [isFeatured]="false"></app-project-card>
+        </div>
+
+        <!-- Featured / active card (center) -->
+        <div
+          class="projects-section__project projects-section__project--active"
+          [class.projects-section__project--slide-in-right]="slideDirection() === 1 && isTransitioning()"
+          [class.projects-section__project--slide-in-left]="slideDirection() === -1 && isTransitioning()"
+        >
+          <app-project-card
+            [project]="selectedProject()"
+            [isFeatured]="true"
+          ></app-project-card>
+        </div>
+
+        <!-- Next card (right peek) -->
+        <div
+          class="projects-section__project projects-section__project--next"
+          aria-hidden="true"
+          (click)="goToNext()"
+        >
+          <app-project-card [project]="nextProject()" [isFeatured]="false"></app-project-card>
+        </div>
+
+      </div>
+
+      <!-- Next navigation button -->
+      <button
+        class="projects-section__navigation-button projects-section__navigation-button--next"
+        (click)="goToNext()"
+        aria-label="Next project"
+        id="projects-nav-next"
+        [disabled]="isTransitioning()"
+      >
+        <svg
+          class="projects-section__nav-icon"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- ── Indicator dots + counter ─────────────────────────── -->
+    <div class="projects-section__navigation" role="tablist" aria-label="Project navigation dots">
+
+      <span class="projects-section__counter" aria-live="polite" aria-atomic="true">
+        {{ currentProjectNumber() }} / {{ totalProjectsFormatted() }}
+      </span>
+
+      <div class="projects-section__indicators">
+        @for (project of projects(); track project.id; let i = $index) {
+          <button
+            class="projects-section__indicator"
+            [class.projects-section__indicator--active]="i === selectedProjectIndex()"
+            (click)="goToIndex(i)"
+            [attr.aria-label]="'Go to project ' + (i + 1) + ': ' + project.title"
+            [attr.aria-selected]="i === selectedProjectIndex()"
+            role="tab"
+            [id]="'projects-dot-' + i"
+          ></button>
+        }
+      </div>
+
+    </div>
+
+  </div>
+</section>

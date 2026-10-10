@@ -1,0 +1,16 @@
+<div
+  class="skill-card"
+  [class.skill-card--selected]="isSelected()"
+  [ngClass]="'skill-card--' + skill().id"
+  (click)="onSelect()"
+  (keydown)="onKeyDown($event)"
+  tabindex="0"
+  role="button"
+  [attr.aria-pressed]="isSelected()"
+  [attr.aria-label]="skill().name + ' skill details'"
+>
+  <div class="skill-card__glow" aria-hidden="true"></div>
+  <div class="skill-card__icon" [innerHTML]="skill().icon | safeHtml" aria-hidden="true"></div>
+  <h3 class="skill-card__name">{{ skill().name }}</h3>
+  <span class="skill-card__subtitle">{{ skill().cardSubtitle }}</span>
+</div>

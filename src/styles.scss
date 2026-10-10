@@ -1,1 +1,643 @@
-/* You can add global styles to this file, and also import other style files */
+@use "./app/style/abstracts" as *;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Dancing+Script:wght@600;700&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-page: url('/assets/herobg.png');
+  --bg-overlay: none;
+  --text-page: #{$color-text-dark};
+
+  --nav-bg: #{$light-nav-bg};
+  --nav-border: #{$light-nav-border};
+  --nav-shadow: #{$light-nav-shadow};
+  --logo-bracket: #{$light-logo-bracket};
+  --logo-bracket-hover: #{$light-logo-bracket-hover};
+  --logo-bracket-glow: none;
+  --logo-name: #{$light-logo-name};
+  --logo-divider: #{$light-logo-divider};
+  --logo-role: #{$light-logo-role};
+  --link-color: #{$light-link};
+  --link-hover: #{$light-link-hover};
+  --link-active: #{$light-link-active};
+  --link-underline: #{$light-link-underline};
+  --link-shadow: none;
+  --contact-bg: #{$light-contact-bg};
+  --contact-color: #{$light-contact-color};
+  --contact-border: #{$light-contact-border};
+  --contact-shadow: #{$light-contact-shadow};
+  --contact-hover-shadow: #{$light-contact-shadow-hover};
+  --toggle-bg: #{$light-toggle-bg};
+  --toggle-border: #{$light-toggle-border};
+  --toggle-color: #{$light-toggle-color};
+  --toggle-hover-bg: #{$light-toggle-hover-bg};
+  --toggle-hover-color: #{$light-toggle-hover-color};
+  --toggle-hover-shadow: #{$light-toggle-shadow-hover};
+}
+
+:root.dark-theme,
+[data-theme="dark"] {
+  --bg-page: url('/assets/herodarkbg.png');
+  --bg-overlay: none;
+  --text-page: #{$color-text-primary};
+
+  --nav-bg: #{$dark-nav-bg};
+  --nav-border: #{$dark-nav-border};
+  --nav-shadow: #{$dark-nav-shadow};
+  --logo-bracket: #{$dark-logo-bracket};
+  --logo-bracket-hover: #{$dark-logo-bracket-hover};
+  --logo-bracket-glow: #{$dark-logo-bracket-glow};
+  --logo-name: #{$dark-logo-name};
+  --logo-divider: #{$dark-logo-divider};
+  --logo-role: #{$dark-logo-role};
+  --link-color: #{$dark-link};
+  --link-hover: #{$dark-link-hover};
+  --link-active: #{$dark-link-active};
+  --link-underline: #{$dark-link-underline};
+  --link-shadow: #{$dark-link-shadow};
+  --contact-bg: #{$dark-contact-bg};
+  --contact-color: #{$dark-contact-color};
+  --contact-border: #{$dark-contact-border};
+  --contact-shadow: #{$dark-contact-shadow};
+  --contact-hover-shadow: #{$dark-contact-shadow-hover};
+  --toggle-bg: #{$dark-toggle-bg};
+  --toggle-border: #{$dark-toggle-border};
+  --toggle-color: #{$dark-toggle-color};
+  --toggle-hover-bg: #{$dark-toggle-hover-bg};
+  --toggle-hover-color: #{$dark-toggle-hover-color};
+  --toggle-hover-shadow: #{$dark-toggle-shadow-hover};
+}
+
+html,
+body {
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-page);
+  background-image: var(--bg-page);
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: color 0.35s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font-family: inherit;
+}
+
+// ============================================================
+//  HERO COMPONENT DARK THEME OVERRIDES
+//  (Moved here to bypass Angular View Encapsulation)
+// ============================================================
+
+:root.dark-theme .hero,
+[data-theme="dark"] .hero {
+
+  .hero__eyebrow { color: $color-primary; }
+
+  .hero__title { color: $color-text-primary; }
+
+  .hero__title-accent {
+    background: linear-gradient(135deg, $color-primary 20%, $color-purple-light 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    &::after {
+      background: linear-gradient(90deg, $color-primary, $color-purple-light);
+    }
+  }
+
+  .hero__role-badge {
+    color: $color-text-secondary;
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .hero__role-separator { color: $color-primary; }
+
+  .hero__description { color: $color-text-secondary; }
+
+  .hero__button--secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: $color-primary;
+    border-color: rgba(56, 189, 248, 0.3);
+
+    &:hover {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.2);
+    }
+  }
+
+  .hero__social { 
+    color: $color-text-secondary; // Fixes missing SVG color in dark mode
+  }
+
+  .hero__social-icon {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .hero__social-label { color: $color-text-muted; }
+
+  .hero__social:hover {
+    .hero__social-icon {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.2);
+    }
+    .hero__social-label { color: $color-primary; }
+  }
+
+  .hero__float-card {
+    background: rgba(11, 23, 41, 0.75);
+    border-color: rgba(56, 189, 248, 0.15);
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(56, 189, 248, 0.08);
+
+    &:hover {
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(56, 189, 248, 0.2);
+    }
+  }
+
+  .hero__float-card-title { color: $color-text-primary; }
+  .hero__float-card-sub   { color: $color-text-muted; }
+
+  .hero__tagline-text { color: $color-primary; }
+}
+
+// ============================================================
+//  PROJECTS SECTION DARK THEME OVERRIDES
+// ============================================================
+
+:root.dark-theme,
+[data-theme="dark"] {
+
+  .projects-section {
+    &__eyebrow {
+      color: $color-primary;
+    }
+
+    &__eyebrow-dot {
+      background: linear-gradient(135deg, $color-primary, $color-secondary);
+    }
+
+    &__title {
+      color: $color-text-primary;
+    }
+
+    &__title-accent {
+      background: linear-gradient(135deg, $color-primary 20%, $color-purple-light 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    &__description {
+      color: $color-text-secondary;
+    }
+
+    &__tagline-text {
+      color: $color-primary;
+    }
+
+    &__tagline-line {
+      background: linear-gradient(90deg, $color-primary, transparent);
+    }
+
+    &__navigation-button {
+      background: rgba(11, 23, 41, 0.78);
+      border-color: rgba(56, 189, 248, 0.28);
+      color: $color-primary;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+
+      &:hover:not(:disabled) {
+        background: rgba(19, 38, 65, 0.95);
+        border-color: $color-primary;
+        color: #ffffff;
+        box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+      }
+    }
+
+    &__counter {
+      color: $color-text-muted;
+    }
+
+    &__indicator {
+      background: rgba(56, 189, 248, 0.22);
+
+      &--active {
+        background: linear-gradient(90deg, $color-primary, $color-secondary);
+        box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+      }
+
+      &:hover:not(&--active) {
+        background: rgba(56, 189, 248, 0.55);
+      }
+    }
+  }
+
+  // ── Project Card Dark Theme ────────────────────────────────
+  .project-card {
+    background: rgba(11, 23, 41, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-color: rgba(56, 189, 248, 0.18);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.45),
+      0 0 0 1px rgba(56, 189, 248, 0.08);
+
+    &--featured {
+      border-color: rgba(56, 189, 248, 0.35);
+      box-shadow:
+        0 12px 48px rgba(0, 0, 0, 0.55),
+        0 0 24px rgba(56, 189, 248, 0.12),
+        0 0 0 1px rgba(56, 189, 248, 0.18);
+
+      &:hover {
+        border-color: rgba(56, 189, 248, 0.6);
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.7),
+          0 0 36px rgba(56, 189, 248, 0.28),
+          0 0 0 1px rgba(56, 189, 248, 0.35);
+
+        .project-card__action--primary {
+          box-shadow: 0 6px 22px rgba(56, 189, 248, 0.45);
+        }
+      }
+    }
+
+    &:not(&--featured):hover {
+      border-color: rgba(56, 189, 248, 0.55);
+      box-shadow:
+        0 20px 48px rgba(0, 0, 0, 0.65),
+        0 0 28px rgba(56, 189, 248, 0.22),
+        0 0 0 1px rgba(56, 189, 248, 0.3);
+
+      .project-card__title {
+        color: $color-primary;
+      }
+
+      .project-card__technology {
+        background: rgba(56, 189, 248, 0.16);
+        border-color: $color-primary;
+        color: #ffffff;
+      }
+    }
+
+    &::after {
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(56, 189, 248, 0.22) 50%,
+        transparent 100%
+      );
+    }
+
+    &__badge {
+      background: linear-gradient(135deg, $color-primary, $color-purple-light);
+      box-shadow: 0 2px 14px rgba(56, 189, 248, 0.45);
+    }
+
+    &__image-wrapper {
+      background: linear-gradient(135deg, #0b1729 0%, #132641 100%);
+    }
+
+    &__image {
+      background: linear-gradient(135deg, #0b1729 0%, #132641 100%);
+    }
+
+    &__image-overlay {
+      background: linear-gradient(to bottom, transparent 35%, rgba(11, 23, 41, 0.75) 100%);
+    }
+
+    &__year {
+      background: rgba(11, 23, 41, 0.7);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      color: $color-text-secondary;
+    }
+
+    &__category {
+      color: $color-primary;
+    }
+
+    &__title {
+      color: $color-text-primary;
+    }
+
+    &__description {
+      color: $color-text-secondary;
+    }
+
+    &__technology {
+      color: $color-primary-light;
+      background: rgba(56, 189, 248, 0.08);
+      border-color: rgba(56, 189, 248, 0.22);
+
+      &:hover {
+        background: rgba(56, 189, 248, 0.16);
+        border-color: $color-primary;
+        color: #ffffff;
+      }
+    }
+
+    &__action--primary {
+      background: linear-gradient(135deg, $color-primary, $color-purple-light);
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.35);
+
+      &:hover {
+        box-shadow: 0 6px 24px rgba(56, 189, 248, 0.5);
+      }
+    }
+
+    &__action--secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: $color-text-primary;
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+
+      &:hover {
+        background: rgba(56, 189, 248, 0.12);
+        border-color: $color-primary;
+        color: $color-primary;
+        box-shadow: 0 4px 16px rgba(56, 189, 248, 0.2);
+      }
+    }
+  }
+
+  // ── Experience Section Dark Theme ───────────────────────────
+  .experience-section {
+    &__eyebrow {
+      color: $color-primary;
+    }
+
+    &__eyebrow-dot {
+      background: linear-gradient(135deg, $color-primary, $color-secondary);
+    }
+
+    &__title {
+      color: #f8fafc;
+    }
+
+    &__title-accent {
+      background: linear-gradient(135deg, #38bdf8 20%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    &__description {
+      color: #cbd5e1;
+    }
+
+    &__tagline-word {
+      color: $color-primary;
+    }
+
+    &__tagline-line {
+      background: linear-gradient(90deg, $color-primary, transparent);
+    }
+
+    &__line {
+      background: #183252;
+      box-shadow: 0 0 10px rgba(24, 50, 82, 0.6);
+    }
+
+    &__line-fill {
+      background: linear-gradient(180deg, #38bdf8 0%, #818cf8 50%, #34d399 100%);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.75);
+    }
+
+    &__line-glow {
+      background: #38bdf8;
+      box-shadow:
+        0 0 14px 4px rgba(56, 189, 248, 1),
+        0 0 28px 8px rgba(56, 189, 248, 0.55);
+    }
+
+    &__connector {
+      background: #183252;
+    }
+
+    &__item--current &__connector {
+      background: rgba(52, 211, 153, 0.4);
+    }
+
+    &__item--reached {
+      .experience-section__marker--previous {
+        border-color: #38bdf8;
+        box-shadow:
+          0 0 18px rgba(56, 189, 248, 0.6),
+          0 0 0 1px rgba(56, 189, 248, 0.25);
+
+        .experience-section__marker-core {
+          background: #38bdf8;
+          box-shadow: 0 0 8px #38bdf8;
+        }
+
+        .experience-section__marker-pulse-ring {
+          border-color: #38bdf8;
+        }
+      }
+
+      .experience-section__connector {
+        background: linear-gradient(90deg, #38bdf8, rgba(56, 189, 248, 0.25));
+        box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
+      }
+
+      .experience-section__date {
+        color: #38bdf8;
+      }
+    }
+
+    &__date {
+      color: #f8fafc;
+    }
+
+    &__duration {
+      color: #94a3b8;
+    }
+
+    &__item--current &__date {
+      color: #34d399;
+    }
+
+    &__marker--previous {
+      background: #06101f;
+      border-color: #334155;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+
+      .experience-section__marker-core {
+        background: #475569;
+      }
+    }
+
+    &__marker--current {
+      background: #06101f;
+      border-color: #34d399;
+      box-shadow: 0 0 16px rgba(52, 211, 153, 0.5);
+      animation: exp-marker-pulse-dark 2.2s infinite;
+
+      .experience-section__marker-core {
+        background: #34d399;
+      }
+    }
+
+    &__mobile-period {
+      color: #f8fafc;
+    }
+
+    &__mobile-badge {
+      color: #94a3b8;
+      background: #0b1729;
+      border-color: #183252;
+    }
+
+    &__item--current &__mobile-period {
+      color: #34d399;
+    }
+
+    // Dark theme for timeline-end
+    &__end-dot {
+      background: #183252;
+      border-color: #0b1729;
+    }
+
+    &__timeline-end--reached &__end-dot {
+      background: linear-gradient(135deg, #38bdf8, #34d399);
+      box-shadow:
+        0 0 14px rgba(56, 189, 248, 0.85),
+        0 0 0 2px rgba(11, 23, 41, 0.9);
+    }
+
+    &__end-badge {
+      background: rgba(11, 23, 41, 0.85);
+      border-color: rgba(56, 189, 248, 0.25);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+
+      &:hover {
+        border-color: rgba(56, 189, 248, 0.5);
+        box-shadow: 0 8px 28px rgba(56, 189, 248, 0.2);
+      }
+    }
+
+    &__end-sparkle {
+      color: #38bdf8;
+    }
+
+    &__end-title {
+      background: linear-gradient(135deg, #38bdf8, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    &__end-sep {
+      color: #64748b;
+    }
+
+    &__end-subtitle {
+      color: #94a3b8;
+    }
+  }
+
+  // ── Experience Card Dark Theme ──────────────────────────────
+  .experience-card {
+    background: #0b1729;
+    border-color: #183252;
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(24, 50, 82, 0.5);
+
+    &:hover {
+      border-color: #2563a8;
+      box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.6),
+        0 0 24px rgba(56, 189, 248, 0.12),
+        0 0 0 1px rgba(56, 189, 248, 0.25);
+
+      .experience-card__role {
+        color: #38bdf8;
+      }
+
+      .experience-card__technology {
+        border-color: rgba(56, 189, 248, 0.4);
+        background: rgba(56, 189, 248, 0.12);
+        color: #ffffff;
+      }
+    }
+
+    &--current {
+      border-color: rgba(52, 211, 153, 0.4);
+      box-shadow:
+        0 6px 28px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(52, 211, 153, 0.12),
+        0 0 0 1px rgba(52, 211, 153, 0.25);
+
+      &:hover {
+        border-color: rgba(52, 211, 153, 0.65);
+        box-shadow:
+          0 18px 44px rgba(0, 0, 0, 0.65),
+          0 0 28px rgba(52, 211, 153, 0.25),
+          0 0 0 1px rgba(52, 211, 153, 0.4);
+
+        .experience-card__role {
+          color: #34d399;
+        }
+      }
+    }
+
+    &__logo {
+      background: #0f1d32;
+      border-color: #183252;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    &__company {
+      color: #f8fafc;
+    }
+
+    &__location {
+      color: #94a3b8;
+
+      &-icon {
+        color: #64748b;
+      }
+    }
+
+    &__status {
+      color: #34d399;
+      background: #064e3b;
+      border-color: rgba(52, 211, 153, 0.3);
+
+      &-dot {
+        background: #34d399;
+      }
+    }
+
+    &__role {
+      color: #f8fafc;
+    }
+
+    &__description {
+      color: #cbd5e1;
+    }
+
+    &__technology {
+      color: #cbd5e1;
+      background: rgba(15, 29, 50, 0.85);
+      border-color: #183252;
+    }
+  }
+}

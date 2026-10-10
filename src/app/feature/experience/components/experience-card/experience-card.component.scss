@@ -1,0 +1,377 @@
+@use "abstracts" as colors;
+
+// ============================================================
+//  KEYFRAMES
+// ============================================================
+
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.75); }
+}
+
+// ============================================================
+//  HOST
+// ============================================================
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+// ============================================================
+//  EXPERIENCE CARD BLOCK
+// ============================================================
+
+.experience-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  padding: 1.75rem 2rem;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow:
+    0 4px 20px rgba(15, 23, 42, 0.04),
+    0 1px 3px rgba(15, 23, 42, 0.02);
+  transition:
+    transform     0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow    0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color  0.35s ease,
+    background    0.35s ease;
+
+  // ── Hover interaction ───────────────────────────────────────
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(37, 99, 235, 0.35);
+    box-shadow:
+      0 16px 36px rgba(37, 99, 235, 0.09),
+      0 4px 12px rgba(15, 23, 42, 0.04);
+
+    .experience-card__role {
+      color: colors.$color-primary-blue;
+    }
+
+    .experience-card__technology {
+      border-color: rgba(37, 99, 235, 0.32);
+      transform: translateY(-1px);
+    }
+  }
+
+  // ── Current Experience State ────────────────────────────────
+  &--current {
+    border-color: rgba(22, 163, 74, 0.38);
+    box-shadow:
+      0 6px 24px rgba(22, 163, 74, 0.08),
+      0 1px 3px rgba(15, 23, 42, 0.03);
+
+    &:hover {
+      border-color: rgba(22, 163, 74, 0.55);
+      box-shadow:
+        0 18px 40px rgba(22, 163, 74, 0.14),
+        0 4px 14px rgba(15, 23, 42, 0.04);
+
+      .experience-card__role {
+        color: #16a34a;
+      }
+    }
+  }
+
+  // ── Card Header (Logo + Company + Status) ───────────────────
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__identity {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  // 56px Logo Container
+  &__logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    transition: transform 0.3s ease;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+
+  &:hover &__logo {
+    transform: scale(1.05);
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  &__company {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #0f172a;
+    margin: 0;
+    letter-spacing: -0.2px;
+    word-break: break-word;
+  }
+
+  &__location {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #64748b;
+
+    &-icon {
+      color: #94a3b8;
+      flex-shrink: 0;
+    }
+  }
+
+  // ── Current Badge ───────────────────────────────────────────
+
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #16a34a;
+    background: #dcfce7;
+    border: 1px solid rgba(22, 163, 74, 0.25);
+    border-radius: 999px;
+    flex-shrink: 0;
+    white-space: nowrap;
+
+    &-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #16a34a;
+      animation: status-pulse 2s ease-in-out infinite;
+    }
+  }
+
+  // ── Role ────────────────────────────────────────────────────
+
+  &__role {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.35;
+    letter-spacing: -0.15px;
+    transition: color 0.25s ease;
+  }
+
+  // ── Description ─────────────────────────────────────────────
+
+  &__description {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #475569;
+    margin: 0;
+  }
+
+  // ── Technology Badges ───────────────────────────────────────
+
+  &__technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 4px;
+  }
+
+  &__technology {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 11px;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: #334155;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 999px;
+    transition:
+      transform    0.2s ease,
+      background   0.2s ease,
+      border-color 0.2s ease,
+      color        0.2s ease;
+    white-space: nowrap;
+  }
+
+  &__tech-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      display: block;
+    }
+  }
+
+  // ── Responsive ──────────────────────────────────────────────
+
+  @media (max-width: 768px) {
+    padding: 1.4rem 1.4rem;
+    gap: 0.9rem;
+    border-radius: 16px;
+
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    &__logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+    }
+
+    &__company {
+      font-size: 1rem;
+    }
+
+    &__role {
+      font-size: 0.95rem;
+    }
+
+    &__description {
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    &__technology {
+      font-size: 11px;
+      padding: 3px 9px;
+    }
+  }
+}
+
+// ============================================================
+//  DARK THEME SUPPORT
+// ============================================================
+
+:host-context(.dark-theme),
+:host-context([data-theme="dark"]) {
+  .experience-card {
+    background: #0b1729;
+    border-color: #183252;
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(24, 50, 82, 0.5);
+
+    &:hover {
+      border-color: #2563a8;
+      box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.6),
+        0 0 24px rgba(56, 189, 248, 0.12),
+        0 0 0 1px rgba(56, 189, 248, 0.25);
+
+      .experience-card__role {
+        color: #38bdf8;
+      }
+
+      .experience-card__technology {
+        border-color: rgba(56, 189, 248, 0.4);
+        background: rgba(56, 189, 248, 0.12);
+        color: #ffffff;
+      }
+    }
+
+    &--current {
+      border-color: rgba(52, 211, 153, 0.4);
+      box-shadow:
+        0 6px 28px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(52, 211, 153, 0.12),
+        0 0 0 1px rgba(52, 211, 153, 0.25);
+
+      &:hover {
+        border-color: rgba(52, 211, 153, 0.65);
+        box-shadow:
+          0 18px 44px rgba(0, 0, 0, 0.65),
+          0 0 28px rgba(52, 211, 153, 0.25),
+          0 0 0 1px rgba(52, 211, 153, 0.4);
+
+        .experience-card__role {
+          color: #34d399;
+        }
+      }
+    }
+
+    &__logo {
+      background: #0f1d32;
+      border-color: #183252;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    &__company {
+      color: #f8fafc;
+    }
+
+    &__location {
+      color: #94a3b8;
+
+      &-icon {
+        color: #64748b;
+      }
+    }
+
+    &__status {
+      color: #34d399;
+      background: #064e3b;
+      border-color: rgba(52, 211, 153, 0.3);
+
+      &-dot {
+        background: #34d399;
+      }
+    }
+
+    &__role {
+      color: #f8fafc;
+    }
+
+    &__description {
+      color: #cbd5e1;
+    }
+
+    &__technology {
+      color: #cbd5e1;
+      background: rgba(15, 29, 50, 0.85);
+      border-color: #183252;
+    }
+  }
+}

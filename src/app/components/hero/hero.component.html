@@ -1,0 +1,170 @@
+<section class="hero" id="home" aria-label="Hero Section">
+  <div class="hero__container">
+    <div class="hero__content">
+      <p class="hero__eyebrow">
+        <span class="hero__eyebrow-dot" aria-hidden="true"></span>
+        HELLO, I'M
+      </p>
+      <h1 class="hero__title">
+        Akshay<br>
+        <span class="hero__title-accent">Sarsamkar</span>
+      </h1>
+
+      <!-- Role Badges -->
+      <div class="hero__role" aria-label="Roles">
+        <span class="hero__role-badge">FRONTEND DEVELOPER</span>
+        <span class="hero__role-separator" aria-hidden="true">•</span>
+        <span class="hero__role-badge">ANGULAR ENTHUSIAST</span>
+      </div>
+
+      <!-- Description -->
+      <p class="hero__description">
+        I build modern, responsive and user-centric web applications using
+        Angular and React, with a focus on clean architecture, performance
+        and great user experiences.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="hero__actions">
+        <a class="hero__button hero__button--primary" href="#projects" id="hero-cta-work">
+          View My Work
+          <span class="hero__button-icon" aria-hidden="true">→</span>
+        </a>
+        <a class="hero__button hero__button--secondary" href="/assets/resume.pdf" download id="hero-cta-resume">
+          Download Resume
+          <span class="hero__button-icon" aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <div class="hero__socials" aria-label="Social links">
+        @for (social of socialLinks; track social.name) {
+          <a
+            class="hero__social"
+            [href]="social.url"
+            [attr.aria-label]="social.label"
+            [id]="'hero-social-' + social.name.toLowerCase()"
+            [attr.data-social]="social.name.toLowerCase()"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="hero__social-icon" [innerHTML]="social.icon" aria-hidden="true"></span>
+            <span class="hero__social-label">{{ social.name }}</span>
+          </a>
+        }
+      </div>
+
+    </div>
+
+    <div class="hero__visual" aria-hidden="true">
+      <div class="hero__portrait-wrapper">
+        <div class="hero__tagline">
+          <span class="hero__tagline-text">Build</span>
+          <span class="hero__tagline-text">Better</span>
+          <span class="hero__tagline-text">Web</span>
+          <span class="hero__tagline-underline"></span>
+        </div>
+        <div class="hero__portrait-frame">
+          <img class="hero__portrait" src="assets/myimg.png" alt="Akshay Sarsamkar – Frontend Developer" loading="eager"
+            draggable="false" />
+        </div>
+
+        <!-- ===== LEFT SIDE CARDS (3) ===== -->
+
+        <!-- Left Top: Angular -->
+        <div class="hero__angular-card hero__float-card" role="img" aria-label="Angular technology card">
+          <div class="hero__float-card-icon hero__float-card-icon--angular">
+            <svg viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+              <path d="M125 30L31.9 63.2l14.2 123.1L125 230l78.9-43.7 14.2-123.1z" fill="#DD0031" />
+              <path d="M125 30v22.2-.1V230l78.9-43.7 14.2-123.1L125 30z" fill="#C3002F" />
+              <path d="M125 52.1L66.8 182.6h21.7l11.7-29.2h49.4l11.7 29.2H183L125 52.1zm17 83.3h-34l17-40.9 17 40.9z"
+                fill="#fff" />
+            </svg>
+          </div>
+          <div class="hero__float-card-text">
+            <strong class="hero__float-card-title">Angular</strong>
+            <span class="hero__float-card-sub">Build. Learn. Grow.</span>
+          </div>
+        </div>
+
+        <!-- Left Mid: React -->
+        <div class="hero__react-card hero__float-card" role="img" aria-label="React technology card">
+          <div class="hero__float-card-icon hero__float-card-icon--react">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="2.05" fill="#61DAFB" />
+              <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#61DAFB" stroke-width="1.2" />
+              <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#61DAFB" stroke-width="1.2"
+                transform="rotate(60 12 12)" />
+              <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#61DAFB" stroke-width="1.2"
+                transform="rotate(120 12 12)" />
+            </svg>
+          </div>
+          <div class="hero__float-card-text">
+            <strong class="hero__float-card-title">React</strong>
+            <span class="hero__float-card-sub">UI Development</span>
+          </div>
+        </div>
+
+        <!-- Left Bottom: Clean Code -->
+        <div class="hero__code-card hero__float-card" role="img" aria-label="Clean code card">
+          <div class="hero__float-card-icon hero__float-card-icon--code">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+          </div>
+          <div class="hero__float-card-text">
+            <strong class="hero__float-card-title">Clean Code</strong>
+            <span class="hero__float-card-sub">Better Solutions</span>
+          </div>
+        </div>
+
+        <!-- ===== RIGHT SIDE CARDS (3) ===== -->
+
+        <!-- Right Top: Always Learning -->
+        <div class="hero__learning-card hero__float-card" role="img" aria-label="Always learning card">
+          <div class="hero__float-card-icon hero__float-card-icon--learning">
+            💡
+          </div>
+          <div class="hero__float-card-text">
+            <strong class="hero__float-card-title">Always Learning</strong>
+            <span class="hero__float-card-sub">New Possibilities</span>
+          </div>
+        </div>
+
+        <!-- Right Mid: JavaScript -->
+        <div class="hero__js-card hero__float-card" role="img" aria-label="JavaScript technology card">
+          <div class="hero__float-card-icon hero__float-card-icon--js">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="3" fill="#F7DF1E" />
+              <path
+                d="M6.3 20.1c.4.7 1.1 1.2 2.3 1.2 1.3 0 2.1-.6 2.1-1.9v-7.3H9.1v7.2c0 .5-.2.8-.7.8-.4 0-.7-.3-1-.7l-1.1.7zm5.8-.4c.5.9 1.4 1.6 2.9 1.6 1.6 0 2.7-.8 2.7-2.2 0-1.3-.7-1.9-2.1-2.5l-.5-.2c-.7-.3-1-.5-1-.9 0-.4.3-.6.8-.6.5 0 .8.2 1.1.7l1-.7c-.5-.9-1.3-1.3-2.2-1.3-1.4 0-2.3.8-2.3 2 0 1.2.7 1.8 2 2.4l.5.2c.7.3 1.1.5 1.1 1.1 0 .5-.4.8-1 .8-.7 0-1.1-.4-1.4-.9l-1.6.5z"
+                fill="#000" />
+            </svg>
+          </div>
+          <div class="hero__float-card-text">
+            <strong class="hero__float-card-title">JavaScript</strong>
+            <span class="hero__float-card-sub">Dynamic Web</span>
+          </div>
+        </div>
+
+        <!-- Right Bottom: TypeScript -->
+        <div class="hero__ts-card hero__float-card" role="img" aria-label="TypeScript technology card">
+          <div class="hero__float-card-icon hero__float-card-icon--ts">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="3" fill="#3178C6" />
+              <path
+                d="M13.3 11.9h2.4v-.9h-5.8v.9h2.3v6.1h1.1v-6.1zM15.8 14.8c0 1.9 1.1 3.3 3.2 3.3 1.9 0 3.1-1.1 3.1-2.8v-.1h-1.1c0 1.1-.6 1.8-2 1.8-1.3 0-2-.9-2-2.3 0-1.4.7-2.3 2-2.3 1.3 0 1.9.8 1.9 1.8h1.1v-.1c0-1.7-1.1-2.7-3-2.7-2.1 0-3.2 1.4-3.2 3.4z"
+                fill="#fff" />
+            </svg>
+          </div>
+          <div class="hero__float-card-text">
+            <strong class="hero__float-card-title">TypeScript</strong>
+            <span class="hero__float-card-sub">Type-Safe Code</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

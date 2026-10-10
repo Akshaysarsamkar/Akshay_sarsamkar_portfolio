@@ -1,0 +1,76 @@
+<nav class="navbar">
+    <div class="navbar__container">
+        <!-- Logo / Brand with Role -->
+        <a class="navbar__logo" href="#home">
+            <div class="navbar__logo-brand">
+                <span class="navbar__logo-bracket">&lt;</span>
+                <span class="navbar__logo-name">AS</span>
+                <span class="navbar__logo-bracket">/&gt;</span>
+            </div>
+            <div class="navbar__logo-divider"></div>
+            <div class="navbar__logo-role">
+                <span class="navbar__logo-role-line">FRONTEND</span>
+                <span class="navbar__logo-role-line">DEVELOPER</span>
+            </div>
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="navbar__navigation">
+            <a class="navbar__link navbar__link--active" href="#home">Home</a>
+            <a class="navbar__link" href="#about">About</a>
+            <a class="navbar__link" href="#skills">Skills</a>
+            <a class="navbar__link" href="#projects">Projects</a>
+            <a class="navbar__link" href="#experience">Experience</a>
+            <a class="navbar__link" href="#contact">Contact</a>
+        </div>
+
+        <!-- Right Side: Resume Download + Theme Toggle + Mobile Menu -->
+        <div class="navbar__actions">
+            <a class="navbar__resume" href="assets/resume.pdf" download="Akshay_Sarsamkar_Resume.pdf" aria-label="Download Resume" title="Download Resume">
+                <span class="navbar__resume-text">Resume</span>
+                <span class="navbar__resume-icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                </span>
+            </a>
+
+            <!-- Theme Toggle Button -->
+            <button 
+                class="navbar__theme-toggle" 
+                type="button" 
+                (click)="toggleTheme()"
+                [attr.aria-label]="themeService.isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+                [title]="themeService.isDark() ? 'Switch to light mode' : 'Switch to dark mode'">
+                @if (themeService.isDark()) {
+                    <!-- Sun Icon for switching to light -->
+                    <svg class="navbar__theme-icon navbar__theme-icon--sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="4"/>
+                        <path d="M12 2v2"/>
+                        <path d="M12 20v2"/>
+                        <path d="m4.93 4.93 1.41 1.41"/>
+                        <path d="m17.66 17.66 1.41 1.41"/>
+                        <path d="M2 12h2"/>
+                        <path d="M20 12h2"/>
+                        <path d="m6.34 17.66-1.41 1.41"/>
+                        <path d="m19.07 4.93-1.41 1.41"/>
+                    </svg>
+                } @else {
+                    <!-- Moon Icon for switching to dark -->
+                    <svg class="navbar__theme-icon navbar__theme-icon--moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                    </svg>
+                }
+            </button>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <button class="navbar__menu" type="button" aria-label="Toggle navigation">
+                <span class="navbar__menu-line"></span>
+                <span class="navbar__menu-line"></span>
+                <span class="navbar__menu-line"></span>
+            </button>
+        </div>
+    </div>
+</nav>

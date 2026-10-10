@@ -1,0 +1,70 @@
+<section class="skills" id="skills" aria-labelledby="skills-heading">
+  <!-- Background Watermarks matching Figma -->
+  <div class="skills__watermark" aria-hidden="true">
+    <span class="skills__watermark-number">03</span>
+    <span class="skills__watermark-script">Build<br />Learn<br />Create</span>
+  </div>
+
+  <div class="skills__container">
+    <!-- Left Column (40%): Header + Grid of Cards -->
+    <div class="skills__left">
+      <!-- Section Header -->
+      <header class="skills__header">
+        <span class="skills__eyebrow">— 03. SKILLS</span>
+        <h2 class="skills__title" id="skills-heading">
+          Technologies I use to build better
+          <span class="skills__title-accent">web experiences.</span>
+        </h2>
+        <p class="skills__description">
+          I work with modern tools and technologies to create scalable,
+          responsive and high-performance web applications. I'm always
+          learning and exploring new technologies to stay ahead.
+        </p>
+      </header>
+
+      <!-- Grid of Cards in 3 rows matching Figma -->
+      <div class="skills__grid" role="list" aria-label="Technologies list">
+        <!-- Row 1: 4 cards -->
+        <div class="skills__grid-row skills__grid-row--4">
+          @for (skill of row1; track skill.id) {
+            <app-skill-card
+              role="listitem"
+              [skill]="skill"
+              [isSelected]="selectedSkill().id === skill.id"
+              (skillSelected)="selectSkill($event)"
+            ></app-skill-card>
+          }
+        </div>
+
+        <!-- Row 2: 4 cards -->
+        <div class="skills__grid-row skills__grid-row--4">
+          @for (skill of row2; track skill.id) {
+            <app-skill-card
+              role="listitem"
+              [skill]="skill"
+              [isSelected]="selectedSkill().id === skill.id"
+              (skillSelected)="selectSkill($event)"
+            ></app-skill-card>
+          }
+        </div>
+
+        <!-- Row 3: 5 cards -->
+        <div class="skills__grid-row skills__grid-row--5">
+          @for (skill of row3; track skill.id) {
+            <app-skill-card
+              role="listitem"
+              [skill]="skill"
+              [isSelected]="selectedSkill().id === skill.id"
+              (skillSelected)="selectSkill($event)"
+            ></app-skill-card>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column (60%): Large Skill Details Card -->
+    <aside class="skills__right" aria-label="Selected skill details">
+      <app-skill-details [skill]="selectedSkill()"></app-skill-details>
+    </aside>
+  </div>
+</section>

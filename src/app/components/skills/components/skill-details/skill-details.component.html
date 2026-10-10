@@ -1,0 +1,82 @@
+<article class="skill-details" [attr.aria-label]="skill().name + ' comprehensive details'">
+  <div class="skill-details__glow" aria-hidden="true"></div>
+
+  <!-- Top Area: Left Header & Description + Right 3D Visual -->
+  <div class="skill-details__top">
+    <div class="skill-details__intro">
+      <header class="skill-details__header">
+        <div class="skill-details__icon" [innerHTML]="skill().icon | safeHtml" aria-hidden="true"></div>
+        <div class="skill-details__title-group">
+          <h3 class="skill-details__title">{{ skill().name }}</h3>
+          <p class="skill-details__subtitle">{{ skill().subtitle }}</p>
+        </div>
+      </header>
+
+      <p class="skill-details__description">{{ skill().description }}</p>
+
+      <div class="skill-details__actions">
+        <a [href]="skill().docsUrl" target="_blank" rel="noopener noreferrer"
+          class="skill-details__btn skill-details__btn--primary">
+          <span>{{ skill().exploreText || ('Explore ' + skill().name + ' →') }}</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right 3D Diagram Visual -->
+    <div class="skill-details__visual">
+      @if (activeImage()) {
+      <img class="skill-details__visual-img" [src]="activeImage()" [alt]="skill().name + ' architectural diagram'"
+        loading="lazy" />
+      } @else {
+      <div class="skill-details__visual-placeholder">
+        <div class="skill-details__visual-icon" [innerHTML]="skill().icon | safeHtml" aria-hidden="true"></div>
+      </div>
+      }
+    </div>
+  </div>
+
+  <!-- Middle Area: Key Features I Work With -->
+  <section class="skill-details__section">
+    <div class="skill-details__section-header">
+      <span class="skill-details__section-line" aria-hidden="true">—</span>
+      <h4 class="skill-details__section-title">Key Features I Work With</h4>
+    </div>
+
+    <div class="skill-details__features-grid">
+      @for (feature of skill().features; track feature) {
+      <div class="skill-details__feature-card">
+        <span class="skill-details__feature-check" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span class="skill-details__feature-name">{{ feature }}</span>
+      </div>
+      }
+    </div>
+  </section>
+
+  <!-- Bottom Area: My Proficiency -->
+  <section class="skill-details__section">
+    <div class="skill-details__section-header">
+      <span class="skill-details__section-line" aria-hidden="true">—</span>
+      <h4 class="skill-details__section-title">My Proficiency</h4>
+    </div>
+
+    <div class="skill-details__proficiency-list">
+      @for (bar of skill().proficiencyBars; track bar.name) {
+      <div class="skill-details__proficiency-row">
+        <span class="skill-details__proficiency-name">{{ bar.name }}</span>
+        <div class="skill-details__progress-track" role="progressbar" [attr.aria-valuenow]="bar.value" aria-valuemin="0"
+          aria-valuemax="100">
+          <div class="skill-details__progress-fill" [style.width.%]="bar.value" [style.background-color]="bar.color">
+          </div>
+        </div>
+        <span class="skill-details__proficiency-pct">{{ bar.value }}%</span>
+      </div>
+      }
+    </div>
+  </section>
+</article>

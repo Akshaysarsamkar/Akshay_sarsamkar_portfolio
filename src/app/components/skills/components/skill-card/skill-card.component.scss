@@ -1,0 +1,167 @@
+@use "../../../../style/abstracts" as colors;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.skill-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 96px;
+  padding: 8px 6px;
+  background: rgba(10, 20, 39, 0.7);
+  border: 1px solid rgba(27, 49, 82, 0.6);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              background 0.25s ease,
+              box-shadow 0.25s ease;
+
+  &__glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 5px;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+
+    svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+      filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+    }
+  }
+
+  &__name {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: colors.$color-text-primary;
+    letter-spacing: -0.01em;
+    margin: 0;
+    line-height: 1.15;
+    transition: color 0.25s ease;
+  }
+
+  &__subtitle {
+    font-size: 0.64rem;
+    font-weight: 500;
+    color: #7e92ad;
+    line-height: 1.15;
+    margin-top: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 96%;
+    transition: color 0.25s ease;
+  }
+
+  // Hover state
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(56, 189, 248, 0.5);
+    box-shadow: 0 8px 18px -4px rgba(0, 0, 0, 0.4),
+                0 0 12px rgba(56, 189, 248, 0.15);
+
+    .skill-card__glow {
+      opacity: 1;
+    }
+
+    .skill-card__icon {
+      transform: scale(1.08);
+    }
+  }
+
+  &:focus-visible {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.4);
+  }
+
+  // Selected state - matching Figma reference exactly
+  &--selected {
+    background: rgba(13, 27, 54, 0.88);
+    border: 1.5px solid #38bdf8;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.35),
+                0 6px 20px rgba(0, 0, 0, 0.45);
+
+    .skill-card__glow {
+      opacity: 1;
+      background: radial-gradient(circle at center, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+    }
+
+    .skill-card__name {
+      color: #ffffff;
+    }
+
+    .skill-card__subtitle {
+      color: #93c5fd;
+    }
+  }
+}
+
+// Light theme support
+:host-context(.light-theme),
+:host-context([data-theme="light"]) {
+  .skill-card {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(226, 232, 240, 0.95);
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+
+    &__name {
+      color: colors.$color-text-dark;
+    }
+
+    &__subtitle {
+      color: colors.$color-text-dark-muted;
+    }
+
+    &:hover {
+      border-color: colors.$color-primary-blue;
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.12);
+
+      .skill-card__name {
+        color: colors.$color-primary-blue;
+      }
+    }
+
+    &--selected {
+      background: rgba(239, 246, 255, 0.95);
+      border: 1.5px solid colors.$color-primary-blue;
+      box-shadow: 0 0 16px rgba(37, 99, 235, 0.25),
+                  0 4px 14px rgba(37, 99, 235, 0.1);
+
+      .skill-card__name {
+        color: colors.$color-primary-blue;
+      }
+
+      .skill-card__subtitle {
+        color: colors.$color-primary-blue;
+      }
+    }
+  }
+}

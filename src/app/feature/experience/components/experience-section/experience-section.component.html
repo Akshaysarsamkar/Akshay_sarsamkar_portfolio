@@ -1,0 +1,135 @@
+<section
+  class="experience-section"
+  [class.experience-section--visible]="isVisible()"
+  id="experience"
+  aria-labelledby="experience-heading"
+>
+
+  <!-- ── Subtle decorative background elements ──────────────────── -->
+  <div class="experience-section__decorations" aria-hidden="true">
+    <div class="experience-section__bg-grid"></div>
+    <div class="experience-section__bg-blob experience-section__bg-blob--1"></div>
+    <div class="experience-section__bg-blob experience-section__bg-blob--2"></div>
+
+    <!-- Handwritten tagline - Left side -->
+    <div class="experience-section__tagline experience-section__tagline--left">
+      <span class="experience-section__tagline-word">Growth</span>
+      <span class="experience-section__tagline-word">Through</span>
+      <span class="experience-section__tagline-word">Experience</span>
+      <span class="experience-section__tagline-line"></span>
+    </div>
+
+    <!-- Handwritten tagline - Right side -->
+    <div class="experience-section__tagline experience-section__tagline--right">
+      <span class="experience-section__tagline-word">Learn</span>
+      <span class="experience-section__tagline-word">Build</span>
+      <span class="experience-section__tagline-word">Grow</span>
+      <span class="experience-section__tagline-line"></span>
+    </div>
+  </div>
+
+  <div class="experience-section__container">
+
+    <!-- ── Section Header (Compact & Centered) ─────────────────── -->
+    <header class="experience-section__header">
+      <span class="experience-section__eyebrow" aria-label="Section label">
+        <span class="experience-section__eyebrow-dot" aria-hidden="true"></span>
+        EXPERIENCE
+      </span>
+
+      <h2 class="experience-section__title" id="experience-heading">
+        My Professional <span class="experience-section__title-accent">Journey</span>
+      </h2>
+
+      <p class="experience-section__description">
+        A timeline of my professional experience, growth and the impact I’ve created so far.
+      </p>
+    </header>
+
+    <!-- ── Main Vertical Timeline ──────────────────────────────── -->
+    <div class="experience-section__timeline" role="region" aria-label="Experience Timeline">
+
+      <!-- Continuous vertical line connecting all experiences with dynamic scroll fill -->
+      <div class="experience-section__line" aria-hidden="true">
+        <div
+          class="experience-section__line-fill"
+          [style.height.%]="scrollProgress()"
+        >
+          @if (scrollProgress() > 2) {
+            <div class="experience-section__line-glow"></div>
+          }
+        </div>
+      </div>
+
+      <!-- Timeline Items -->
+      @for (item of experiences(); track item.id; let i = $index) {
+        <div
+          class="experience-section__item"
+          [class.experience-section__item--current]="item.current"
+          [class.experience-section__item--reached]="isItemReached(item.id)"
+          [attr.data-item-id]="item.id"
+          [style.--item-index]="i"
+        >
+
+          <!-- ── Date Column (Left) ────────────────────────────── -->
+          <div class="experience-section__date-col">
+            <span class="experience-section__date">{{ item.dateRangeDisplay }}</span>
+            <span class="experience-section__duration">{{ item.period }} • {{ item.duration }}</span>
+          </div>
+
+          <!-- ── Marker & Connector Node (Center) ─────────────── -->
+          <div class="experience-section__node" aria-hidden="true">
+            <div
+              class="experience-section__marker"
+              [class.experience-section__marker--current]="item.current"
+              [class.experience-section__marker--previous]="!item.current"
+              [class.experience-section__marker--reached]="isItemReached(item.id)"
+            >
+              <span class="experience-section__marker-core"></span>
+              <span class="experience-section__marker-pulse-ring"></span>
+            </div>
+            <div class="experience-section__connector"></div>
+          </div>
+
+          <!-- ── Experience Card Column (Right) ────────────────── -->
+          <div class="experience-section__card-col">
+            <!-- Mobile-only inline date banner -->
+            <div class="experience-section__mobile-date" aria-hidden="true">
+              <span class="experience-section__mobile-period">{{ item.period }}</span>
+              <span class="experience-section__mobile-badge">{{ item.duration }}</span>
+            </div>
+
+            <app-experience-card [experience]="item"></app-experience-card>
+          </div>
+
+        </div>
+      }
+
+      <!-- ── Timeline Bottom Continuation Indicator ("below") ──────── -->
+      <div
+        class="experience-section__timeline-end"
+        [class.experience-section__timeline-end--reached]="isEndReached()"
+        aria-hidden="true"
+      >
+        <div class="experience-section__end-col-spacer"></div>
+
+        <div class="experience-section__end-node">
+          <span class="experience-section__end-ping"></span>
+          <span class="experience-section__end-dot"></span>
+        </div>
+
+        <div class="experience-section__end-content">
+          <div class="experience-section__end-badge">
+            <span class="experience-section__end-sparkle">✦</span>
+            <span class="experience-section__end-title">The Journey Continues</span>
+            <span class="experience-section__end-sep">•</span>
+            <span class="experience-section__end-subtitle">Constantly learning, building & innovating</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

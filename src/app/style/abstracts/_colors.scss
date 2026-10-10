@@ -1,0 +1,137 @@
+// ==========================================
+// PALETTE: BASE COLORS
+// ==========================================
+
+// Neutrals & Surfaces - Dark (Previous Theme)
+$color-bg-primary: #020817;
+$color-bg-secondary: #06101f;
+$color-bg-tertiary: #071426;
+
+$color-surface-primary: #0b1729;
+$color-surface-secondary: #0f1d32;
+$color-surface-hover: #132641;
+
+$color-border-primary: #183252;
+$color-border-secondary: #1d3b60;
+$color-border-hover: #2563a8;
+
+$color-text-primary: #f8fafc;
+$color-text-secondary: #cbd5e1;
+$color-text-muted: #94a3b8;
+$color-text-disabled: #64748b;
+
+// Accents - Dark (Previous Theme)
+$color-primary: #38bdf8;
+$color-primary-light: #60a5fa;
+$color-primary-dark: #0284c7;
+$color-secondary: #22d3ee;
+$color-purple: #8b5cf6;
+$color-purple-light: #a78bfa;
+$color-purple-dark: #7c3aed;
+$color-sun-amber: #fbbf24;
+$color-sun-amber-hover: #fde047;
+
+// Technology Brand Colors
+$color-angular: #dd0031;
+$color-react: #61dafb;
+$color-typescript: #3178c6;
+$color-javascript: #f7df1e;
+$color-scss: #cc6699;
+$color-html: #e34f26;
+$color-css: #1572b6;
+$color-git: #f05032;
+$color-java: #ea2d2e;
+$color-mysql: #00758f;
+$color-ag-grid: #0096e6;
+$color-chartjs: #ff6384;
+$color-rxjs: #d80095;
+
+// Neutrals - Light Theme
+$color-light-bg: #f8fafc;
+$color-light-surface: #ffffff;
+$color-light-surface-subtle: #f1f5f9;
+$color-light-border: rgba(226, 232, 240, 0.9);
+$color-light-divider: #cbd5e1;
+
+$color-text-dark: #0f172a;
+$color-text-dark-subtle: #334155;
+$color-text-dark-muted: #475569;
+$color-text-dark-faint: #64748b;
+
+$color-primary-blue: #2563eb;
+$color-accent-purple: #7c3aed;
+
+// Gradients - Page Backgrounds
+$gradient-page-light: radial-gradient(circle at 50% 0%, #e0e7ff 0%, #ede9fe 40%, #f8fafc 100%);
+$gradient-page-dark: radial-gradient(circle at 50% 0%, #0b1729 0%, #06101f 40%, #020817 100%);
+
+// Gradients - Buttons & Accents
+$gradient-contact-light: linear-gradient(135deg, $color-primary-blue 0%, $color-accent-purple 100%);
+$gradient-contact-dark: linear-gradient(135deg, $color-primary, $color-purple);
+$gradient-underline-dark: linear-gradient(90deg, $color-primary, $color-secondary);
+
+// ==========================================
+// SEMANTIC TOKENS: LIGHT THEME
+// ==========================================
+$light-nav-bg: rgba(255, 255, 255, 0.75);
+$light-nav-border: rgba(255, 255, 255, 0.85);
+$light-nav-shadow: 0 14px 34px -8px rgba(37, 99, 235, 0.09), 0 4px 12px rgba(15, 23, 42, 0.03), 0 0 0 1px rgba(226, 232, 240, 0.6);
+
+$light-logo-bracket: $color-primary-blue;
+$light-logo-bracket-hover: $color-accent-purple;
+$light-logo-name: $color-text-dark;
+$light-logo-divider: $color-light-divider;
+$light-logo-role: $color-text-dark-faint;
+
+$light-link: $color-text-dark-muted;
+$light-link-hover: $color-primary-blue;
+$light-link-active: $color-primary-blue;
+$light-link-underline: $color-primary-blue;
+
+$light-contact-bg: $gradient-contact-light;
+$light-contact-color: #ffffff;
+$light-contact-border: transparent;
+$light-contact-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+$light-contact-shadow-hover: 0 6px 20px rgba(37, 99, 235, 0.45);
+
+$light-toggle-bg: $color-light-surface;
+$light-toggle-border: $color-light-border;
+$light-toggle-color: $color-text-dark-subtle;
+$light-toggle-hover-bg: $color-light-bg;
+$light-toggle-hover-color: $color-text-dark;
+$light-toggle-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+$light-toggle-shadow-hover: 0 4px 10px rgba(15, 23, 42, 0.08);
+
+// ==========================================
+// SEMANTIC TOKENS: DARK THEME (PREVIOUS THEME)
+// ==========================================
+$dark-nav-bg: rgba($color-bg-primary, 0.82);
+$dark-nav-border: rgba($color-border-primary, 0.6);
+$dark-nav-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.08), 0 0 0 1px rgba(24, 50, 82, 0.5);
+
+$dark-logo-bracket: $color-primary;
+$dark-logo-bracket-hover: $color-secondary;
+$dark-logo-bracket-glow: 0 0 14px rgba($color-secondary, 0.6);
+$dark-logo-name: $color-text-primary;
+$dark-logo-divider: rgba(255, 255, 255, 0.15);
+$dark-logo-role: $color-text-muted;
+
+$dark-link: $color-text-muted;
+$dark-link-hover: $color-text-primary;
+$dark-link-active: $color-primary;
+$dark-link-underline: $gradient-underline-dark;
+$dark-link-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
+
+$dark-contact-bg: $gradient-contact-dark;
+$dark-contact-color: #ffffff;
+$dark-contact-border: rgba(56, 189, 248, 0.4);
+$dark-contact-shadow: 0 4px 16px rgba(56, 189, 248, 0.25);
+$dark-contact-shadow-hover: 0 8px 30px rgba(56, 189, 248, 0.35), 0 0 20px rgba(139, 92, 246, 0.2);
+
+$dark-toggle-bg: $color-surface-secondary;
+$dark-toggle-border: $color-border-secondary;
+$dark-toggle-color: $color-sun-amber;
+$dark-toggle-hover-bg: $color-surface-hover;
+$dark-toggle-hover-color: $color-sun-amber-hover;
+$dark-toggle-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+$dark-toggle-shadow-hover: 0 0 16px rgba(251, 191, 36, 0.35);
